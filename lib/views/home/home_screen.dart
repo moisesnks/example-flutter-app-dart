@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'widgets/profile_widget.dart';
+import 'widgets/profile/profile_widget.dart';
+import './widgets/home/github_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -21,7 +22,7 @@ class HomeScreenState extends State<HomeScreen> {
   }
 
   final List<Widget> _widgetOptions = <Widget>[
-    Text('Contenido de Inicio'),
+    GithubWidget(),
     Text('Contenido de Configuración'),
     ProfileWidget(),
   ];

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../viewmodels/profile_viewmodel.dart';
-import '../../../widgets/text_field.dart';
-import '../../../widgets/elevated_button.dart';
-import '../../../models/profile.dart';
+import '../../../../viewmodels/profile_viewmodel.dart';
+import '../../../../widgets/text_field.dart';
+import '../../../../widgets/elevated_button.dart';
+import '../../../../models/profile.dart';
 
 class ProfileDetails extends StatefulWidget {
   @override

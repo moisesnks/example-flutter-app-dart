@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../models/profile.dart';
-import '../../../viewmodels/profile_viewmodel.dart';
+import '../../../../models/profile.dart';
+import '../../../../viewmodels/profile_viewmodel.dart';
 import 'profile_form.dart';
 import 'profile_actions.dart';
 import 'profile_image_widget.dart';

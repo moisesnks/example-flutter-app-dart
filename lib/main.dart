@@ -7,6 +7,7 @@ import 'views/register/register_screen.dart';
 import 'viewmodels/login_viewmodel.dart';
 import 'viewmodels/register_viewmodel.dart';
 import 'viewmodels/profile_viewmodel.dart';
+import 'viewmodels/github_viewmodel.dart';
 import 'services/auth_service.dart';
 import 'services/firestore_service.dart';
 import 'services/storage_service.dart';
@@ -40,6 +41,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
             create: (_) => ProfileViewModel(
                 firestoreService, authService, storageService)),
+        ChangeNotifierProvider(
+            create: (context) => GithubViewModel(authService)),
       ],
       child: MaterialApp(
         title: 'Mi aplicación',

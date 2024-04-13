@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../widgets/text_field.dart';
-import '../../../widgets/text.dart';
+import '../../../../widgets/text_field.dart';
+import '../../../../widgets/text.dart';
 
 class ProfileForm extends StatelessWidget {
   final TextEditingController nameController;

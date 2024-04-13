@@ -24,7 +24,7 @@ class RegisterScreenState extends State<RegisterScreen> {
 
     // Si el usuario ha iniciado sesión, posponer la navegación a `/home`
     if (registrationViewModel.isAuthenticated) {
-      WidgetsBinding.instance!.addPostFrameCallback((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         Navigator.pushReplacementNamed(context, '/home');
       });
     }

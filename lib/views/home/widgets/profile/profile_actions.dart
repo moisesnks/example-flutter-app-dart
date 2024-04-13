@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../widgets/elevated_button.dart';
+import '../../../../widgets/elevated_button.dart';
 
 class ProfileActions extends StatelessWidget {
   final VoidCallback onSave;

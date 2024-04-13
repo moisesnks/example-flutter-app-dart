@@ -53,8 +53,6 @@ class LoginViewModel extends ChangeNotifier {
       String? displayName = user.displayName;
       String? photoUrl = user.photoURL;
 
-      print("Usuario autenticado con GitHub: $user");
-
       // Obtener la dirección de correo electrónico desde providerData
       String? email;
       for (UserInfo info in user.providerData) {

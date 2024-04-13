@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  String? _githubAccessToken;
 
   // Obtiene el usuario actual
   User? get currentUser => _auth.currentUser;
@@ -39,18 +40,48 @@ class AuthService {
     }
   }
 
-  // Sign in with Github
+  // Método para iniciar sesión con GitHub
   Future<UserCredential> signInWithGithub() async {
-    // Crear una instancia de GithubAuthProvider
+    // Crea una instancia de GithubAuthProvider
     final GithubAuthProvider githubProvider = GithubAuthProvider();
 
     try {
-      // Iniciar sesión con Github usando signInWithPopup
-      return await _auth.signInWithPopup(githubProvider);
+      // Inicia sesión con GitHub usando signInWithPopup
+      UserCredential userCredential =
+          await _auth.signInWithPopup(githubProvider);
+
+      // Verifica si userCredential.credential no es nulo antes de acceder a él
+      if (userCredential.credential == null) {
+        print('Error: Las credenciales de autenticación de GitHub son nulas.');
+        return userCredential;
+      }
+
+      // Obtiene el token de acceso de GitHub
+      final credential = userCredential.credential as OAuthCredential?;
+
+      // Verifica si credential y credential.token no son nulos antes de continuar
+      if (credential == null || credential.token == null) {
+        print('Error: Las credenciales de OAuth o el token son nulos.');
+        return userCredential;
+      }
+
+      // Asigna el token de acceso a _githubAccessToken
+      _githubAccessToken = credential.accessToken;
+
+      // Imprime el token de acceso y el nombre de usuario
+      print('Token de acceso de GitHub: $_githubAccessToken');
+      print('Usuario de GitHub: ${userCredential.user?.displayName}');
+
+      return userCredential;
     } catch (e) {
-      // Manejar cualquier error durante el inicio de sesión
+      // Maneja cualquier error durante el inicio de sesión
       print('Error al iniciar sesión con GitHub: $e');
       rethrow;
     }
+  }
+
+  // Método para obtener el token de acceso de GitHub
+  Future<String?> getGithubAccessToken() async {
+    return _githubAccessToken; // Devuelve el token de acceso almacenado
   }
 }

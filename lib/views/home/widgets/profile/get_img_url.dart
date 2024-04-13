@@ -5,7 +5,6 @@ Future<String?> getImgUrl(String imgUrl) async {
     // Realizamos una solicitud HEAD para verificar si la imagen está disponible
     final response = await http.head(Uri.parse(imgUrl));
     if (response.statusCode == 200) {
-      print("The image exists!");
       return imgUrl;
     } else {
       print("Image not found: ${response.statusCode}");
