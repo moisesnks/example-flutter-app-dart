@@ -32,7 +32,8 @@ class MyApp extends StatelessWidget {
       providers: [
         Provider<AuthService>(create: (_) => authService),
         Provider<FirestoreService>(create: (_) => firestoreService),
-        ChangeNotifierProvider(create: (_) => LoginViewModel(authService)),
+        ChangeNotifierProvider(
+            create: (_) => LoginViewModel(authService, firestoreService)),
         ChangeNotifierProvider(
             create: (_) =>
                 RegistrationViewModel(authService, firestoreService)),

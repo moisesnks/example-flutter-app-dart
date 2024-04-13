@@ -14,11 +14,14 @@ class FirestoreService {
 
     // Crear un documento con el UID del usuario
     try {
+      print("Intentando registrar perfil... $userId");
       await _firestore
           .collection('USERS')
           .doc(userId)
           .set(profile.toFirestore());
+      print('Perfil registrado');
     } catch (e) {
+      print("Error al registrar el perfil: $e");
       throw Exception('Error al registrar el perfil: $e');
     }
   }

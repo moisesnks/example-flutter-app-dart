@@ -68,6 +68,14 @@ class LoginScreenState extends State<LoginScreen> {
                   },
                 ),
               const SizedBox(height: 20),
+              // Botón para iniciar sesión con GitHub
+              CustomElevatedButton(
+                text: 'Iniciar sesión con GitHub',
+                onPressed: () {
+                  loginViewModel.signInWithGithub();
+                },
+              ),
+              const SizedBox(height: 20),
               GestureDetector(
                 onTap: () {
                   // Navegar a RegisterScreen cuando se hace clic

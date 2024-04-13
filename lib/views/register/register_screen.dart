@@ -21,6 +21,14 @@ class RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     final registrationViewModel = Provider.of<RegistrationViewModel>(context);
+
+    // Si el usuario ha iniciado sesión, posponer la navegación a `/home`
+    if (registrationViewModel.isAuthenticated) {
+      WidgetsBinding.instance!.addPostFrameCallback((_) {
+        Navigator.pushReplacementNamed(context, '/home');
+      });
+    }
+
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(

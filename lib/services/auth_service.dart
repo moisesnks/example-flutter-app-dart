@@ -38,4 +38,19 @@ class AuthService {
           .reload(); // Recargar el usuario para obtener los datos actualizados
     }
   }
+
+  // Sign in with Github
+  Future<UserCredential> signInWithGithub() async {
+    // Crear una instancia de GithubAuthProvider
+    final GithubAuthProvider githubProvider = GithubAuthProvider();
+
+    try {
+      // Iniciar sesión con Github usando signInWithPopup
+      return await _auth.signInWithPopup(githubProvider);
+    } catch (e) {
+      // Manejar cualquier error durante el inicio de sesión
+      print('Error al iniciar sesión con GitHub: $e');
+      rethrow;
+    }
+  }
 }
