@@ -80,13 +80,9 @@ class LoginViewModel extends ChangeNotifier {
         email: email,
       );
 
-      // Guardar la información del usuario en Firestore
-      print("Intentando registrar perfil... $profile");
       try {
         await _firestoreService.registerProfile(profile);
-        print('Perfil registrado');
       } catch (e) {
-        print("Error al registrar el perfil: $e");
         throw Exception('Error al registrar el perfil: $e');
       }
 

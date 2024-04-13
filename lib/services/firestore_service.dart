@@ -7,22 +7,29 @@ class FirestoreService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  // Registrar datos de un perfil de usuario cuando se registra
+  // Registrar un nuevo perfil de usuario
   Future<void> registerProfile(Profile profile) async {
     // Obtener el UID actual
     String? userId = _auth.currentUser?.uid;
 
-    // Crear un documento con el UID del usuario
-    try {
-      print("Intentando registrar perfil... $userId");
-      await _firestore
-          .collection('USERS')
-          .doc(userId)
-          .set(profile.toFirestore());
-      print('Perfil registrado');
-    } catch (e) {
-      print("Error al registrar el perfil: $e");
-      throw Exception('Error al registrar el perfil: $e');
+    // Comprobar si ya existe un documento con el UID del usuario
+    final DocumentSnapshot existingProfile =
+        await _firestore.collection('USERS').doc(userId).get();
+
+    // Si el documento no existe, crear un nuevo perfil
+    if (!existingProfile.exists) {
+      try {
+        await _firestore
+            .collection('USERS')
+            .doc(userId)
+            .set(profile.toFirestore());
+        print('Perfil registrado');
+      } catch (e) {
+        print("Error al registrar el perfil: $e");
+        throw Exception('Error al registrar el perfil: $e');
+      }
+    } else {
+      print('Perfil ya existe, no se ha creado uno nuevo.');
     }
   }
 
