@@ -4,6 +4,7 @@ import 'styles.dart';
 import '../../widgets/text_field.dart';
 import '../../widgets/elevated_button.dart';
 import '../../viewmodels/login_viewmodel.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -51,6 +52,7 @@ class LoginScreenState extends State<LoginScreen> {
                 const Center(child: CircularProgressIndicator())
               else
                 CustomElevatedButton(
+                  icon: MdiIcons.login,
                   text: 'Iniciar sesión',
                   onPressed: () {
                     final email = _emailController.text;
@@ -70,6 +72,7 @@ class LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 20),
               // Botón para iniciar sesión con GitHub
               CustomElevatedButton(
+                icon: MdiIcons.github,
                 text: 'Iniciar sesión con GitHub',
                 onPressed: () {
                   loginViewModel.signInWithGithub();

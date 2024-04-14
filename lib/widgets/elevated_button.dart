@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 class CustomElevatedButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
+  final IconData? icon;
 
-  CustomElevatedButton({required this.text, required this.onPressed});
+  CustomElevatedButton({
+    required this.text,
+    required this.onPressed,
+    this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,16 @@ class CustomElevatedButton extends StatelessWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
-        child: Text(text),
+        child: icon != null
+            ? Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(icon, color: Colors.white),
+                  SizedBox(width: 8), // Espacio entre el icono y el texto
+                  Text(text),
+                ],
+              )
+            : Text(text),
       ),
     );
   }

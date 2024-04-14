@@ -45,32 +45,19 @@ class AuthService {
     // Crea una instancia de GithubAuthProvider
     final GithubAuthProvider githubProvider = GithubAuthProvider();
 
-    try {
-      // Inicia sesión con GitHub usando signInWithPopup
-      UserCredential userCredential =
-          await _auth.signInWithPopup(githubProvider);
+    // Configura el ámbito de GitHub
+    githubProvider.addScope('repo');
+    githubProvider.addScope('read:user');
 
-      // Verifica si userCredential.credential no es nulo antes de acceder a él
-      if (userCredential.credential == null) {
-        print('Error: Las credenciales de autenticación de GitHub son nulas.');
-        return userCredential;
-      }
+    try {
+      final UserCredential userCredential =
+          await _auth.signInWithPopup(githubProvider);
 
       // Obtiene el token de acceso de GitHub
       final credential = userCredential.credential as OAuthCredential?;
 
-      // Verifica si credential y credential.token no son nulos antes de continuar
-      if (credential == null || credential.token == null) {
-        print('Error: Las credenciales de OAuth o el token son nulos.');
-        return userCredential;
-      }
-
       // Asigna el token de acceso a _githubAccessToken
-      _githubAccessToken = credential.accessToken;
-
-      // Imprime el token de acceso y el nombre de usuario
-      print('Token de acceso de GitHub: $_githubAccessToken');
-      print('Usuario de GitHub: ${userCredential.user?.displayName}');
+      _githubAccessToken = credential?.accessToken;
 
       return userCredential;
     } catch (e) {

@@ -52,23 +52,7 @@ class LoginViewModel extends ChangeNotifier {
       User user = userCredential.user!;
       String? displayName = user.displayName;
       String? photoUrl = user.photoURL;
-
-      // Obtener la dirección de correo electrónico desde providerData
-      String? email;
-      for (UserInfo info in user.providerData) {
-        if (info.providerId == 'github.com') {
-          email = info.email;
-          break;
-        }
-      }
-
-      // Verificar que se encontró una dirección de correo electrónico
-      if (email == null) {
-        _errorMessage =
-            'No se pudo obtener una dirección de correo electrónico del proveedor de GitHub.';
-        notifyListeners();
-        return;
-      }
+      String? email = user.email;
 
       // Crear un perfil de usuario con la información obtenida
       Profile profile = Profile(
@@ -79,7 +63,9 @@ class LoginViewModel extends ChangeNotifier {
       );
 
       try {
+        print("Registrando...");
         await _firestoreService.registerProfile(profile);
+        print("Registrado!");
       } catch (e) {
         throw Exception('Error al registrar el perfil: $e');
       }

@@ -52,7 +52,7 @@ class ProfileDetailsState extends State<ProfileDetails> {
   void _updateTextControllers(Profile profile) {
     // Actualiza los controladores con información actual del perfil.
     _nameController.text = profile.name;
-    _emailController.text = profile.email;
+    _emailController.text = profile.email!;
     _phoneController.text = profile.phoneNumber;
     _displayNameController.text = profile.displayName;
   }

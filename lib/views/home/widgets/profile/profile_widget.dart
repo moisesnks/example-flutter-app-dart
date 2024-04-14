@@ -49,7 +49,7 @@ class ProfileWidgetState extends State<ProfileWidget> {
     if (profile != null) {
       setState(() {
         _nameController.text = profile.name;
-        _emailController.text = profile.email;
+        _emailController.text = profile.email!;
         _phoneController.text = profile.phoneNumber;
         _displayNameController.text = profile.displayName;
         _photoUrlController.text = profile.photoUrl ?? '';

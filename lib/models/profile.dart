@@ -1,6 +1,6 @@
 class Profile {
   final String name;
-  final String email;
+  final String? email;
   final String phoneNumber;
   String? photoUrl;
   final String displayName;
@@ -9,11 +9,12 @@ class Profile {
   // Constructores
   Profile({
     required this.name,
-    required this.email,
+    String? email,
     String? phoneNumber,
     String? photoUrl,
     String? displayName,
-  })  : phoneNumber = phoneNumber ?? '',
+  })  : email = email ?? '',
+        phoneNumber = phoneNumber ?? '',
         photoUrl = photoUrl ?? '',
         displayName = displayName ?? name,
         role = 'client';
